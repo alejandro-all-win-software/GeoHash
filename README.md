@@ -5,6 +5,7 @@ Geohash is a system for encoding a ```(latitude, longitude)``` pair into a singl
 The longer the shared prefix between two hashes, the closer they are to each other. For example ```abcdef``` is closer to ```abcdeg``` than ```abcdff```. However the converse is not true! Two areas may be very close to each other while having very different Geohashes:
 
 <img width="302" alt="Screen Shot 2021-06-20 at 1 58 09 PM" src="https://user-images.githubusercontent.com/83901702/122663789-8e411f00-d1cf-11eb-9a84-c05246d97a0d.png">
+
 ```dart
 // Compute the GeoHash for a lat/lng point
 double lat = 51.5074;
@@ -20,7 +21,7 @@ londonRef.update({
   'geohash': hash,
   'lat': lat,
   'lng': lng
-}).then(() => {
+}).then((){
   // ...
 });
 
@@ -60,10 +61,14 @@ await Future.wait(futures).then((snapshots){
     }
   }
   return matchingDocs;
-}).then((matchingDocs) => {
+}).then((matchingDocs){
   // Process the matching documents
   // ...
 });
-
 ```
+# Limitations
+Using Geohashes for querying locations gives us new capabilities, but comes with its own set of limitations:
+
+False Positives - querying by Geohash is not exact, and you have to filter out false-positive results on the client side. These extra reads add cost and latency to your app.
+Edge Cases - this query method relies on estimating the distance between lines of longitude/latitude. The accuracy of this estimate decreases as points get closer to the North or South Pole which means Geohash queries have more false positives at extreme latitudes.
 
