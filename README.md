@@ -1,5 +1,7 @@
 # GeoHash
 
+[Firebase Solutions Geoqueries](https://firebase.google.com/docs/firestore/solutions/geoqueries)
+
 Geohash is a system for encoding a ```(latitude, longitude)``` pair into a single Base32 string. In the Geohash system the world is divided into a rectangular grid. Each character of a Geohash string specifies one of 32 subdivisions of the prefix hash. For example the Geohash ```abcd``` is one of 32 four-character hashes fully contained within the larger Geohash ```abc```.
 
 The longer the shared prefix between two hashes, the closer they are to each other. For example ```abcdef``` is closer to ```abcdeg``` than ```abcdff```. However the converse is not true! Two areas may be very close to each other while having very different Geohashes:
